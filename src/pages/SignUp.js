@@ -30,13 +30,21 @@ const SignUp = () => {
 
   const UseSignUp = async (email, password) => {
     await axios
-      .post("https://pre-onboarding-selection-task.shop/auth/signup", {
-        email: email,
-        password: password,
-      })
+      .post(
+        "https://pre-onboarding-selection-task.shop/auth/signup",
+        {
+          email: email,
+          password: password,
+        }
+        // {
+        //   headers: {
+        //     Authorization: "token",
+        //   },
+        // }
+      )
       .then((res) => {
         alert("계정이 성공적으로 생성되었습니다");
-        console.log(email, password);
+        console.log(res);
       })
       .catch((error) => {
         alert(`${error}가 발생했습니다.`);
@@ -94,8 +102,9 @@ const SignUpWindow = styled.div`
 `;
 
 const SignUpPageInfo = styled.div`
-  margin: 2rem 0 6rem 0;
+  margin: 2rem 0 5rem 0;
   font-size: ${(props) => props.theme.fontSizes.titleSize};
+  color: ${(props) => props.theme.colors.blue};
 `;
 
 const SignUpForm = styled.form`
@@ -119,7 +128,7 @@ const Text = styled.div`
 const EmailInput = styled.input.attrs((props) => ({
   type: "email",
   name: "email",
-  placeholder: "이메일 주소",
+  placeholder: "이메일",
 }))`
   width: 20rem;
   height: 3rem;
