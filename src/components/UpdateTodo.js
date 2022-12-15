@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-// import DeleteTodoList from "./DeleteTodoList";
+import DeleteTodo from "./DeleteTodo";
 
-const UpdateTodoList = ({ todoList }) => {
+const UpdateTodo = ({ todoList }) => {
   const { id, todo, isCompleted, userId } = todoList;
 
   const [updateTodoLists, setUpdateTodolists] = useState({
@@ -49,6 +49,12 @@ const UpdateTodoList = ({ todoList }) => {
       });
   };
 
+  // const [isToggled, setIsToggled] = useState(false);
+
+  // const toggleMenu = () => {
+  //   setIsToggled((isToggled) => !isToggled);
+  // };
+
   const [isModified, setIsModified] = useState(false);
 
   const changeModifiedField = () => {
@@ -57,17 +63,17 @@ const UpdateTodoList = ({ todoList }) => {
 
   return (
     <UpdateTodoListWrapper>
+      <DeleteTodo id={id} />
+      {/* {!isToggled ? null : ( */}
       <ContentWrapper>
         {!isModified ? (
-          <ReadContent>
-            {/* {id} */}
-            {todo}
-            {/* {isCompleted} */}
-            {/* {userId} */}
-          </ReadContent>
+          <ReadContent>{todo}</ReadContent>
         ) : (
           <UpdateContent
-            onChange={handleUpdateTodoList}
+            // onChange={(e) => {
+            //   handleUpdateTodoList(e);
+            // }}
+            onChange={handleUpdateTodoList} // 위 코드랑 이거랑 같은 기능을 함.
             defaultValue={todo}
             required
           />
@@ -87,11 +93,12 @@ const UpdateTodoList = ({ todoList }) => {
           </FinishingButton>
         )}
       </ContentWrapper>
+      {/* )} */}
     </UpdateTodoListWrapper>
   );
 };
 
-export default UpdateTodoList;
+export default UpdateTodo;
 
 const UpdateTodoListWrapper = styled.form`
   font-size: 1rem;
