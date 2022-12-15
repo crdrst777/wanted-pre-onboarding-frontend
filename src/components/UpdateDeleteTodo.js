@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import DeleteTodo from "./DeleteTodo";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
-const UpdateTodo = ({ todoList }) => {
+const UpdateDeleteTodo = ({ todoList }) => {
   const { id, todo, isCompleted, userId } = todoList;
 
   const [updateTodoLists, setUpdateTodolists] = useState({
@@ -20,8 +20,6 @@ const UpdateTodo = ({ todoList }) => {
       ...updateTodoLists,
       updateTodo: e.target.value,
     });
-    // console.log(value);
-    console.log(updateTodoLists);
   };
 
   const UpdateTodoLists = async () => {
@@ -44,16 +42,10 @@ const UpdateTodo = ({ todoList }) => {
         alert("게시글이 업데이트되었습니다.");
         console.log(res);
       })
-      .catch((error) => {
+      .catch(() => {
         alert("에러가 발생했습니다.");
       });
   };
-
-  // const [isToggled, setIsToggled] = useState(false);
-
-  // const toggleMenu = () => {
-  //   setIsToggled((isToggled) => !isToggled);
-  // };
 
   const [isModified, setIsModified] = useState(false);
 
@@ -61,18 +53,29 @@ const UpdateTodo = ({ todoList }) => {
     setIsModified((isModified) => !isModified);
   };
 
+  const DeleteTodoLists = async () => {
+    await axios
+      .delete(`https://pre-onboarding-selection-task.shop/todos/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        alert("삭제되었습니다.");
+        // console.log(res);
+      })
+      .catch(() => {
+        alert("에러가 발생했습니다.");
+      });
+  };
+
   return (
     <UpdateTodoListWrapper>
-      <DeleteTodo id={id} />
-      {/* {!isToggled ? null : ( */}
       <ContentWrapper>
         {!isModified ? (
           <ReadContent>{todo}</ReadContent>
         ) : (
           <UpdateContent
-            // onChange={(e) => {
-            //   handleUpdateTodoList(e);
-            // }}
             onChange={handleUpdateTodoList} // 위 코드랑 이거랑 같은 기능을 함.
             defaultValue={todo}
             required
@@ -93,12 +96,19 @@ const UpdateTodo = ({ todoList }) => {
           </FinishingButton>
         )}
       </ContentWrapper>
-      {/* )} */}
+
+      <DeleteTodoListsWrapper
+        onClick={() => {
+          DeleteTodoLists();
+        }}
+      >
+        <RiDeleteBin6Line />
+      </DeleteTodoListsWrapper>
     </UpdateTodoListWrapper>
   );
 };
 
-export default UpdateTodo;
+export default UpdateDeleteTodo;
 
 const UpdateTodoListWrapper = styled.form`
   font-size: 1rem;
@@ -137,3 +147,7 @@ const ModifyingButton = styled.button`
 `;
 
 const FinishingButton = styled(ModifyingButton)``;
+
+const DeleteTodoListsWrapper = styled.div`
+  cursor: pointer;
+`;

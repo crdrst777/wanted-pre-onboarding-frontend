@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import UpdateTodo from "./UpdateTodo";
+import UpdateDeleteTodo from "./UpdateDeleteTodo";
 
 const ReadTodo = () => {
   const [todoLists, setTodoLists] = useState([]);
@@ -26,7 +26,7 @@ const ReadTodo = () => {
     <ReadTodoWrapper>
       <TodoListInfo>TodoList</TodoListInfo>
       {todoLists.map((todoList, index) => (
-        <UpdateTodo todoList={todoList} key={index} />
+        <UpdateDeleteTodo todoList={todoList} key={index} />
       ))}
     </ReadTodoWrapper>
   );
