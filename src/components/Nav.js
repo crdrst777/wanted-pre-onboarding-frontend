@@ -18,22 +18,15 @@ const Nav = () => {
 
   return (
     <NavWrapper>
-      <MainButton
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        메인페이지
-      </MainButton>
       {localStorage.getItem("token") ? (
-        <TodoListButton onClick={() => navigate("/todolist")}>
+        <TodoListButton onClick={() => navigate("/todo")}>
           TodoList 페이지
         </TodoListButton>
       ) : (
         <TodoListButton
           onClick={() => {
             alert("로그인 후 이용 가능합니다.");
-            navigate("/login");
+            navigate("/");
           }}
         >
           TodoList 페이지
@@ -45,7 +38,7 @@ const Nav = () => {
       ) : (
         <LoginButton
           onClick={() => {
-            navigate("/login");
+            navigate("/");
           }}
         >
           로그인
@@ -68,8 +61,6 @@ const LogoutButton = styled.button`
   color: ${(props) => props.theme.colors.white};
   cursor: pointer;
 `;
-
-const MainButton = styled(LogoutButton)``;
 
 const TodoListButton = styled(LogoutButton)``;
 
