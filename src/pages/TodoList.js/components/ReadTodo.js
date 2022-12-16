@@ -24,7 +24,6 @@ const ReadTodo = () => {
 
   return (
     <ReadTodoWrapper>
-      <TodoListInfo>TodoList</TodoListInfo>
       {todoLists.map((todoList, index) => (
         <UpdateDeleteTodo todoList={todoList} key={index} />
       ))}
@@ -35,13 +34,8 @@ const ReadTodo = () => {
 const ReadTodoWrapper = styled.div`
   width: 30rem;
   border-top: 1px solid black;
-  margin: 0.8rem 0 0 0;
-  padding: 1.5rem 0 0 0;
-`;
-
-const TodoListInfo = styled.div`
-  font-size: 1.5rem;
-  font-weight: bold;
+  margin: 0.8rem 0 4rem 0;
+  padding: 1rem 0 0 0;
 `;
 
 export default ReadTodo;

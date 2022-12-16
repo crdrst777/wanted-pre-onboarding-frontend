@@ -50,15 +50,20 @@ const Nav = () => {
 
 const NavWrapper = styled.div`
   ${(props) => props.theme.flex.flexBox()};
+  margin: auto;
+  width: 30rem;
+  margin-bottom: 2rem;
 `;
+
 const LogoutButton = styled.button`
   border: none;
-  margin: 0.7rem 0;
   width: 10rem;
   height: 3rem;
-  font-size: 1.2rem;
-  background-color: ${(props) => props.theme.colors.blue};
-  color: ${(props) => props.theme.colors.white};
+  font-size: 1rem;
+  background-color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.mint};
+  font-weight: ${(props) => props.theme.fontWeights.semiBold};
+
   cursor: pointer;
 `;
 

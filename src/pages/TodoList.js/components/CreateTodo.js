@@ -42,7 +42,7 @@ const CreateTodo = () => {
 
   return (
     <CreateTodoWrapper>
-      <InputInfo>내용을 입력해주세요.</InputInfo>
+      <InputInfo>TodoList</InputInfo>
       <TodoListForm>
         <TextInput
           onChange={(e) => {
@@ -61,16 +61,20 @@ export default CreateTodo;
 const CreateTodoWrapper = styled.div`
   ${(props) => props.theme.flex.flexBox("column")};
   text-align: center;
+  padding: 0.4rem 0 0 0;
+  margin-bottom: 1.6rem;
 `;
 
 const InputInfo = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
+  /* color: ${(props) => props.theme.colors.gray}; */
 `;
 
 const TodoListForm = styled.form`
   ${(props) => props.theme.flex.flexBox("column")};
   text-align: center;
+  margin-top: 2.7rem;
 `;
 
 const TextInput = styled.input.attrs((props) => ({
@@ -79,16 +83,17 @@ const TextInput = styled.input.attrs((props) => ({
 }))`
   width: 30rem;
   margin: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
 `;
 
 const PostButton = styled.button`
   border: none;
-  margin: 1rem 0;
+  margin: 0.1rem 0;
   width: 5rem;
   height: 2rem;
   font-size: 0.9rem;
-  background-color: ${(props) => props.theme.colors.blue};
+  background-color: ${(props) => props.theme.colors.mint};
   color: ${(props) => props.theme.colors.white};
+  border-radius: 0.45rem;
   cursor: pointer;
 `;

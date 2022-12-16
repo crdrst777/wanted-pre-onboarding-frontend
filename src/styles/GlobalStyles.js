@@ -16,7 +16,7 @@ const GlobalStyles = createGlobalStyle`
       font-family: "Noto Sans KR", sans-serif;
   }
 
-  a{
+  a {
     text-decoration: none;
     &:link,&:visited{
       color: inherit;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { RiDeleteBin6Line } from "react-icons/ri";
+// import { RiDeleteBin6Line } from "react-icons/ri";
 
 const UpdateDeleteTodo = ({ todoList }) => {
   const { id, todo, isCompleted, userId } = todoList;
@@ -81,6 +81,8 @@ const UpdateDeleteTodo = ({ todoList }) => {
             required
           />
         )}
+      </ContentWrapper>
+      <BtnsWrapper>
         {!isModified ? (
           <ModifyingButton onClick={() => changeModifiedField()}>
             수정
@@ -92,18 +94,18 @@ const UpdateDeleteTodo = ({ todoList }) => {
               UpdateTodoLists();
             }}
           >
-            수정완료
+            완료
           </FinishingButton>
         )}
-      </ContentWrapper>
-
-      <DeleteTodoListsWrapper
-        onClick={() => {
-          DeleteTodoLists();
-        }}
-      >
-        <RiDeleteBin6Line />
-      </DeleteTodoListsWrapper>
+        <DeleteButton
+          onClick={() => {
+            DeleteTodoLists();
+          }}
+        >
+          삭제
+          {/* <RiDeleteBin6Line /> */}
+        </DeleteButton>
+      </BtnsWrapper>
     </UpdateTodoListWrapper>
   );
 };
@@ -112,15 +114,19 @@ export default UpdateDeleteTodo;
 
 const UpdateTodoListWrapper = styled.form`
   font-size: 1rem;
+  /* ${(props) => props.theme.flex.flexBox("row")}; */
+  ${(props) => props.theme.flex.flexBox("", "flex-start", "start")}
+  width: 30rem;
 `;
 
 const ContentWrapper = styled.div`
-  background-color: #84fffa;
+  background-color: #f8f9fa;
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const ReadContent = styled.div`
-  ${(props) => props.theme.flex.flexBox("", "center", "start")};
-  width: 30rem;
+  width: 23.8rem;
   font-size: 1rem;
   text-align: start;
   white-space: pre-wrap;
@@ -129,25 +135,25 @@ const ReadContent = styled.div`
 const UpdateContent = styled.textarea.attrs((props) => ({
   name: "updateContent",
 }))`
-  ${(props) => props.theme.flex.flexBox("", "", "start")};
-  width: 30rem;
+  width: 23.8rem;
   border: none;
-  background-color: #84fffa;
 `;
+
+const BtnsWrapper = styled.div``;
 
 const ModifyingButton = styled.button`
   border: none;
-  margin: 0.3rem 0;
-  width: 4rem;
+  width: 2.5rem;
   height: 1.5rem;
   font-size: 0.8rem;
-  background-color: ${(props) => props.theme.colors.blue};
+  background-color: ${(props) => props.theme.colors.mint};
   color: ${(props) => props.theme.colors.white};
+  border-radius: 0.3rem;
   cursor: pointer;
 `;
 
 const FinishingButton = styled(ModifyingButton)``;
 
-const DeleteTodoListsWrapper = styled.div`
-  cursor: pointer;
+const DeleteButton = styled(ModifyingButton)`
+  margin-left: 0.2rem;
 `;

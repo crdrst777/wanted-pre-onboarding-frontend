@@ -47,7 +47,8 @@ const colors = {
   disabled: "#ebebeb",
   white: "#ffffff",
   purple: "#342461",
-  mint: "#027b94",
+  violet: "#B143AF",
+  mint: "#1EC997",
   blue: "#3366FF",
 };
 
