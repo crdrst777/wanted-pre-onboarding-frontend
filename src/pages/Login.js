@@ -25,18 +25,10 @@ const Login = () => {
 
   const UseLogin = async (email, password) => {
     await axios
-      .post(
-        "https://pre-onboarding-selection-task.shop/auth/signin",
-        {
-          email: email,
-          password: password,
-        }
-        // {
-        //   headers: {
-        //     Authorization: "token",
-        //   },
-        // }
-      )
+      .post("https://pre-onboarding-selection-task.shop/auth/signin", {
+        email: email,
+        password: password,
+      })
       .then((res) => {
         localStorage.setItem("token", res.data.access_token);
         alert("성공적으로 로그인 했습니다");

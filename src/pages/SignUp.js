@@ -30,18 +30,10 @@ const SignUp = () => {
 
   const UseSignUp = async (email, password) => {
     await axios
-      .post(
-        "https://pre-onboarding-selection-task.shop/auth/signup",
-        {
-          email: email,
-          password: password,
-        }
-        // {
-        //   headers: {
-        //     Authorization: "token",
-        //   },
-        // }
-      )
+      .post("https://pre-onboarding-selection-task.shop/auth/signup", {
+        email: email,
+        password: password,
+      })
       .then((res) => {
         alert("계정이 성공적으로 생성되었습니다");
         console.log(res);
