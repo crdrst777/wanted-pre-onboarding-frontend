@@ -82,8 +82,9 @@ const TextInput = styled.input.attrs((props) => ({
   name: "content",
 }))`
   width: 30rem;
+  height: 2rem;
   margin: 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
 `;
 
 const PostButton = styled.button`

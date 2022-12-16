@@ -127,9 +127,10 @@ const ContentWrapper = styled.div`
 
 const ReadContent = styled.div`
   width: 23.8rem;
-  font-size: 1rem;
+  font-size: 0.97rem;
   text-align: start;
   white-space: pre-wrap;
+  line-height: 1.2rem;
 `;
 
 const UpdateContent = styled.textarea.attrs((props) => ({
@@ -137,6 +138,7 @@ const UpdateContent = styled.textarea.attrs((props) => ({
 }))`
   width: 23.8rem;
   border: none;
+  font-size: 0.82rem;
 `;
 
 const BtnsWrapper = styled.div``;

@@ -84,36 +84,38 @@ export default SignUp;
 const SignUpWrapper = styled.section`
   ${(props) => props.theme.flex.flexBox("column")};
   text-align: center;
-  height: 100vh;
+  margin-top: 6rem;
 `;
 
 const SignUpWindow = styled.div`
-  width: 40rem;
-  padding: 2rem;
-  border: 1px solid black;
+  width: 30rem;
+  margin: 0 auto;
+  border-radius: 0.7rem;
 `;
 
 const SignUpPageInfo = styled.div`
-  margin: 2rem 0 5rem 0;
-  font-size: ${(props) => props.theme.fontSizes.titleSize};
-  color: ${(props) => props.theme.colors.blue};
+  font-size: 1.2rem;
+  font-weight: bold;
 `;
 
 const SignUpForm = styled.form`
   ${(props) => props.theme.flex.flexBox("column")};
+  margin-top: 3.8rem;
+  padding: 1.5rem 1.5rem 0 1.5rem;
   font-size: 1.5rem;
 `;
 
 const Label = styled.label`
   padding: 0 0 0 0.625rem;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-top: 1.2rem;
 `;
 
 const Text = styled.div`
   padding: 0.2rem;
   color: red;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   padding: 0 0 1.5rem 0;
 `;
 
@@ -126,7 +128,7 @@ const EmailInput = styled.input.attrs((props) => ({
   height: 3rem;
   margin: 0.5rem;
   padding: 0.7rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
 `;
 
 const PasswordInput = styled(EmailInput).attrs((props) => ({
@@ -145,9 +147,10 @@ const SignUpButton = styled.button`
   margin: 2rem 0;
   width: 10rem;
   height: 3rem;
-  font-size: 1.2rem;
-  background-color: ${(props) => props.theme.colors.blue};
+  font-size: 1.1rem;
+  background-color: ${(props) => props.theme.colors.mint};
   color: ${(props) => props.theme.colors.white};
+  border-radius: 0.3rem;
   cursor: pointer;
   &:disabled {
     background-color: ${(props) => props.theme.colors.disabled};

@@ -33,6 +33,7 @@ const Login = () => {
         localStorage.setItem("token", res.data.access_token);
         alert("성공적으로 로그인 했습니다");
         console.log(res);
+        window.location.reload();
       })
       .catch((error) => {
         alert("ID 또는 비밀번호가 틀립니다.");
@@ -41,8 +42,7 @@ const Login = () => {
 
   const goToTodoList = () => {
     UseLogin(id, pw);
-    navigate("/todolist");
-    // window.location.reload();
+    navigate("/todo");
   };
 
   const goToSignUp = () => {
@@ -71,32 +71,31 @@ const Login = () => {
 const LoginWrapper = styled.section`
   ${(props) => props.theme.flex.flexBox("column")};
   text-align: center;
-  height: 100vh;
+  margin-top: 6rem;
 `;
 
 const LoginWindow = styled.div`
-  width: 40rem;
+  width: 30rem;
   margin: 0 auto;
-  padding: 2rem;
-  border: 1px solid black;
+  border-radius: 0.7rem;
 `;
 
 const LoginPageInfo = styled.div`
-  margin: 2rem 0 3rem 0;
-  font-size: ${(props) => props.theme.fontSizes.titleSize};
-  color: ${(props) => props.theme.colors.blue};
+  font-size: 1.2rem;
+  font-weight: bold;
 `;
 
 const LoginFormWrapper = styled.form`
   ${(props) => props.theme.flex.flexBox("column")};
+  margin-top: 5rem;
   padding: 1.5rem 1.5rem 0 1.5rem;
   font-size: 1.5rem;
 `;
 
 const Label = styled.label`
   padding: 0 0 0 0.625rem;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 400;
 `;
 
 const IdInput = styled.input.attrs((props) => ({
@@ -109,7 +108,7 @@ const IdInput = styled.input.attrs((props) => ({
   margin: 0.5rem;
   margin-bottom: 2rem;
   padding: 0.7rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
 `;
 
 const PasswordInput = styled(IdInput).attrs((props) => ({
@@ -123,9 +122,10 @@ const LoginButton = styled.button`
   margin: 1rem 0;
   width: 10rem;
   height: 3rem;
-  font-size: 1.2rem;
-  background-color: ${(props) => props.theme.colors.blue};
+  font-size: 1.1rem;
+  background-color: ${(props) => props.theme.colors.mint};
   color: ${(props) => props.theme.colors.white};
+  border-radius: 0.3rem;
   cursor: pointer;
   &:disabled {
     background-color: ${(props) => props.theme.colors.disabled};
@@ -138,9 +138,10 @@ const SignUpButton = styled.button`
   width: 10rem;
   height: 3rem;
   margin: 0 0 1rem 0;
-  font-size: 1.2rem;
-  background-color: ${(props) => props.theme.colors.blue};
+  font-size: 1.1rem;
+  background-color: ${(props) => props.theme.colors.mint};
   color: ${(props) => props.theme.colors.white};
+  border-radius: 0.3rem;
   cursor: pointer;
 `;
 
