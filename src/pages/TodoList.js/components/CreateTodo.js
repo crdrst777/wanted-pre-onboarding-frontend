@@ -23,17 +23,17 @@ const CreateTodo = () => {
       )
       .then((res) => {
         alert("게시글이 등록되었습니다.");
-        console.log(res);
+        window.location.reload();
       })
       .catch((error) => {
         alert(`${error}가 발생했습니다.`);
       });
   };
 
-  // const createTodoList = (e) => {
+  // const c = (e) => {
   //   e.preventDefault();
-  //   UsePostTodoLists(todo);
-  //   e.currentTarget.reset();
+  //   PostTodoLists();
+  //   // e.currentTarget.reset();
   // };
 
   const createTodoList = (e) => {
@@ -50,7 +50,14 @@ const CreateTodo = () => {
           }}
           required
         />
-        <PostButton onClick={PostTodoLists}>게시</PostButton>
+        <PostButton
+          onClick={(e) => {
+            e.preventDefault();
+            PostTodoLists();
+          }}
+        >
+          게시
+        </PostButton>
       </TodoListForm>
     </CreateTodoWrapper>
   );

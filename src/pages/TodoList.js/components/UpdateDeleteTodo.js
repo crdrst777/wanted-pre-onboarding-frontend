@@ -41,6 +41,7 @@ const UpdateDeleteTodo = ({ todoList }) => {
       .then((res) => {
         alert("게시글이 업데이트되었습니다.");
         console.log(res);
+        window.location.reload();
       })
       .catch(() => {
         alert("에러가 발생했습니다.");
@@ -54,20 +55,45 @@ const UpdateDeleteTodo = ({ todoList }) => {
   };
 
   const DeleteTodoLists = async () => {
-    await axios
-      .delete(`https://pre-onboarding-selection-task.shop/todos/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        alert("삭제되었습니다.");
-        // console.log(res);
-      })
-      .catch(() => {
-        alert("에러가 발생했습니다.");
-      });
+    const result = window.confirm("이 게시물을 삭제하시겠습니까?");
+    if (result === true) {
+      await axios
+        .delete(`https://pre-onboarding-selection-task.shop/todos/${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((res) => {
+          alert("삭제되었습니다.");
+          window.location.reload();
+        })
+        .catch(() => {
+          alert("에러가 발생했습니다.");
+        });
+    }
   };
+
+  // async function DeleteTodoLists() {
+  //   const result = window.confirm("이 게시물을 삭제하시겠습니까?");
+  //   if (result === true) {
+  //     try {
+  //       const response = axios.delete(
+  //         `https://pre-onboarding-selection-task.shop/todos/${id}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //           },
+  //         }
+  //       );
+  //       if (response.status === 204) {
+  //       alert(`삭제되었습니다.`);
+  //       window.location.reload();
+  //       }
+  //     } catch (error) {
+  //       alert("에러가 발생되었습니다.");
+  //     }
+  //   }
+  // }
 
   return (
     <UpdateTodoListWrapper>
@@ -98,7 +124,8 @@ const UpdateDeleteTodo = ({ todoList }) => {
           </FinishingButton>
         )}
         <DeleteButton
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             DeleteTodoLists();
           }}
         >
