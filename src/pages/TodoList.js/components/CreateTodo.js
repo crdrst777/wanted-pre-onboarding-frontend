@@ -23,7 +23,7 @@ const CreateTodo = () => {
       )
       .then((res) => {
         alert("게시글이 등록되었습니다.");
-        window.location.reload();
+        window.location.reload(); // 새로고침
       })
       .catch((error) => {
         alert(`${error}가 발생했습니다.`);
@@ -52,6 +52,8 @@ const CreateTodo = () => {
         />
         <PostButton
           onClick={(e) => {
+            // form 태그로 감싼 input과 button으로 엔터키를 누르거나 버튼을 누르면
+            // 사용자가 입력한 값은 자동으로 submit되며 브라우저는 새로고침된다. -> 이 새로고침을 막아주는게 e.preventDefault()
             e.preventDefault();
             PostTodoLists();
           }}

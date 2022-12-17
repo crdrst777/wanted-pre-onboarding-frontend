@@ -24,8 +24,8 @@ const ReadTodo = () => {
 
   return (
     <ReadTodoWrapper>
-      {todoLists.map((todoList, index) => (
-        <UpdateDeleteTodo todoList={todoList} key={index} />
+      {todoLists.map((todoList) => (
+        <UpdateDeleteTodo todoList={todoList} key={todoList.id} />
       ))}
     </ReadTodoWrapper>
   );

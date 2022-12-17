@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import {
+  MdOutlineCheckBox,
+  MdOutlineCheckBoxOutlineBlank,
+} from "react-icons/md";
+
 // import { RiDeleteBin6Line } from "react-icons/ri";
 
 const UpdateDeleteTodo = ({ todoList }) => {
@@ -48,9 +53,15 @@ const UpdateDeleteTodo = ({ todoList }) => {
       });
   };
 
+  const [isChecked, setIsChecked] = useState(false);
+
+  const changeChecked = () => {
+    setIsChecked((isChecked) => !isChecked);
+  };
+
   const [isModified, setIsModified] = useState(false);
 
-  const changeModifiedField = () => {
+  const changeModified = () => {
     setIsModified((isModified) => !isModified);
   };
 
@@ -96,7 +107,14 @@ const UpdateDeleteTodo = ({ todoList }) => {
   // }
 
   return (
-    <UpdateTodoListWrapper>
+    <UpdateTodoListWrapper
+      onClick={() => {
+        changeChecked();
+      }}
+    >
+      <CheckboxWrapper>
+        {isChecked ? <CheckBox /> : <CheckBoxBlank />}
+      </CheckboxWrapper>
       <ContentWrapper>
         {!isModified ? (
           <ReadContent>{todo}</ReadContent>
@@ -110,13 +128,13 @@ const UpdateDeleteTodo = ({ todoList }) => {
       </ContentWrapper>
       <BtnsWrapper>
         {!isModified ? (
-          <ModifyingButton onClick={() => changeModifiedField()}>
+          <ModifyingButton onClick={() => changeModified()}>
             수정
           </ModifyingButton>
         ) : (
           <FinishingButton
             onClick={() => {
-              changeModifiedField();
+              changeModified();
               UpdateTodoLists();
             }}
           >
@@ -141,19 +159,29 @@ export default UpdateDeleteTodo;
 
 const UpdateTodoListWrapper = styled.form`
   font-size: 1rem;
-  /* ${(props) => props.theme.flex.flexBox("row")}; */
   ${(props) => props.theme.flex.flexBox("", "flex-start", "start")}
   width: 30rem;
 `;
 
+const CheckboxWrapper = styled.div`
+  cursor: pointer;
+`;
+
+const CheckBox = styled(MdOutlineCheckBox)``;
+
+const CheckBoxBlank = styled(MdOutlineCheckBoxOutlineBlank)`
+  svg {
+  }
+`;
+
 const ContentWrapper = styled.div`
   background-color: #f8f9fa;
-  margin-right: 1rem;
-  margin-bottom: 1.5rem;
+  margin: 0 0.9rem 1.5rem 0.9rem;
 `;
 
 const ReadContent = styled.div`
-  width: 23.8rem;
+  /* width: 23.8rem; */
+  width: 22rem;
   font-size: 0.97rem;
   text-align: start;
   white-space: pre-wrap;
