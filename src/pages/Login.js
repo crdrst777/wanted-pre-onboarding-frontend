@@ -58,7 +58,7 @@ const Login = () => {
           <IdInput onChange={handleInput} required />
           <Label>비밀번호</Label>{" "}
           <PasswordInput onChange={handleInput} required />
-          <LoginButton onClick={() => goToTodoList()} disabled={!isInputValid}>
+          <LoginButton onClick={goToTodoList} disabled={!isInputValid}>
             로그인
           </LoginButton>
         </LoginFormWrapper>

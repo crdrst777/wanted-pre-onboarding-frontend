@@ -64,7 +64,6 @@ const UpdateDeleteTodo = ({ id, todo, isCompleted, userId }) => {
         }
       )
       .then((res) => {
-        console.log(res.data);
         window.location.reload();
       });
   };

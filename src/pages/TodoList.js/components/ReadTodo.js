@@ -28,11 +28,11 @@ const ReadTodo = () => {
     <ReadTodoWrapper>
       {todoLists.map((todoList) => (
         <UpdateDeleteTodo
+          key={todoList.id}
           id={todoList.id}
           todo={todoList.todo}
           isCompleted={todoList.isCompleted}
           userId={todoList.userId}
-          key={todoList.id}
         />
       ))}
     </ReadTodoWrapper>

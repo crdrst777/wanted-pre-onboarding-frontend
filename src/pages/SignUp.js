@@ -15,7 +15,7 @@ const SignUp = () => {
   const { email, password, checkpassword } = userInputs;
 
   const handleInput = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // name에는 입력창에 따라 각각 email, password, checkpassword 가 들어온다.
     setUserInputs({
       ...userInputs,
       [name]: value,
@@ -28,7 +28,7 @@ const SignUp = () => {
     password.length >= 8 &&
     password === checkpassword;
 
-  const UseSignUp = async (email, password) => {
+  const UseSignUp = async () => {
     await axios
       .post("https://pre-onboarding-selection-task.shop/auth/signup", {
         email: email,
@@ -45,8 +45,8 @@ const SignUp = () => {
 
   const goToLogin = (e) => {
     e.preventDefault();
-    UseSignUp(email, password);
-    navigate("/login");
+    UseSignUp();
+    navigate("/");
   };
 
   return (
@@ -55,23 +55,21 @@ const SignUp = () => {
         <SignUpPageInfo>회원가입</SignUpPageInfo>
         <SignUpForm onSubmit={goToLogin}>
           <Label>이메일</Label>
+          {/* required -> input을 입력하지 않고 제출을 누를 시 경고창이 뜨게 됩니다. */}
           <EmailInput onChange={handleInput} required />
           {!(email.includes("@") && email.includes(".")) ? (
             <Text>이메일에는 '@' 와 '.'이 포함되어야 합니다.</Text>
           ) : null}
-
           <Label>비밀번호</Label>
           <PasswordInput onChange={handleInput} required />
           {password.length < 8 ? (
             <Text>비밀번호는 8자리 이상이어야 합니다.</Text>
           ) : null}
-
           <Label>비밀번호 확인</Label>
           <PasswordCheckInput onChange={handleInput} required />
           {password !== checkpassword ? (
             <Text>비밀번호가 일치하지 않습니다.</Text>
           ) : null}
-
           <SignUpButton disabled={!isInputValid}>회원가입 완료</SignUpButton>
         </SignUpForm>
       </SignUpWindow>

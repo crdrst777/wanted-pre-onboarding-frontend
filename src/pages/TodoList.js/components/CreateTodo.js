@@ -24,7 +24,7 @@ const CreateTodo = () => {
         }
       )
       .then((res) => {
-        alert("게시글이 등록되었습니다.");
+        // alert("게시글이 등록되었습니다.");
         window.location.reload(); // 새로고침
       })
       .catch((error) => {
