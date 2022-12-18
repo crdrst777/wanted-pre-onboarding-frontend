@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import {
-  MdOutlineCheckBox,
-  MdOutlineCheckBoxOutlineBlank,
-} from "react-icons/md";
+// import {
+//   MdOutlineCheckBox,
+//   MdOutlineCheckBoxOutlineBlank,
+// } from "react-icons/md";
 
 // import { RiDeleteBin6Line } from "react-icons/ri";
 
-const UpdateDeleteTodo = ({ todoList }) => {
-  const { id, todo, isCompleted, userId } = todoList;
+const UpdateDeleteTodo = ({ id, todo, isCompleted, userId }) => {
+  const headers = {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  };
 
-  const [updateTodoLists, setUpdateTodolists] = useState({
+  const [updateTodoList, setUpdateTodolist] = useState({
     updateId: id,
     updateTodo: todo,
     updateIsCompleted: isCompleted,
@@ -21,31 +23,27 @@ const UpdateDeleteTodo = ({ todoList }) => {
   //   updateTodoLists;
 
   const handleUpdateTodoList = (e) => {
-    setUpdateTodolists({
-      ...updateTodoLists,
+    setUpdateTodolist({
+      ...updateTodoList,
       updateTodo: e.target.value,
     });
   };
 
-  const UpdateTodoLists = async () => {
+  const updateTodoLists = async () => {
     await axios
       .put(
         `https://pre-onboarding-selection-task.shop/todos/${id}`,
         {
-          // id: updateTodoLists.updateId,
-          todo: updateTodoLists.updateTodo,
-          isCompleted: updateTodoLists.updateIsCompleted,
-          // userId: updateTodoLists.updateUserId,
+          todo: updateTodoList.updateTodo,
+          isCompleted: updateTodoList.updateIsCompleted,
         },
         {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+          headers: headers,
         }
       )
       .then((res) => {
         alert("게시글이 업데이트되었습니다.");
-        console.log(res);
+        // console.log(res);
         window.location.reload();
       })
       .catch(() => {
@@ -53,10 +51,22 @@ const UpdateDeleteTodo = ({ todoList }) => {
       });
   };
 
-  const [isChecked, setIsChecked] = useState(false);
-
   const changeChecked = () => {
-    setIsChecked((isChecked) => !isChecked);
+    return axios
+      .put(
+        `https://pre-onboarding-selection-task.shop/todos/${id}`,
+        {
+          todo: updateTodoList.updateTodo,
+          isCompleted: !updateTodoList.updateIsCompleted,
+        },
+        {
+          headers: headers,
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        window.location.reload();
+      });
   };
 
   const [isModified, setIsModified] = useState(false);
@@ -65,7 +75,7 @@ const UpdateDeleteTodo = ({ todoList }) => {
     setIsModified((isModified) => !isModified);
   };
 
-  const DeleteTodoLists = async () => {
+  const deleteTodoLists = async () => {
     const result = window.confirm("이 게시물을 삭제하시겠습니까?");
     if (result === true) {
       await axios
@@ -107,20 +117,22 @@ const UpdateDeleteTodo = ({ todoList }) => {
   // }
 
   return (
-    <UpdateTodoListWrapper
-      onClick={() => {
-        changeChecked();
-      }}
-    >
-      <CheckboxWrapper>
-        {isChecked ? <CheckBox /> : <CheckBoxBlank />}
-      </CheckboxWrapper>
+    <UpdateTodoListWrapper>
+      {/* {isChecked ? <CheckBox /> : <CheckBoxBlank />} */}
+      <CheckBox
+        type="checkbox"
+        id={id} // ?
+        onClick={() => {
+          changeChecked();
+        }}
+        checked={isCompleted} // ?
+      />
       <ContentWrapper>
         {!isModified ? (
           <ReadContent>{todo}</ReadContent>
         ) : (
           <UpdateContent
-            onChange={handleUpdateTodoList} // 위 코드랑 이거랑 같은 기능을 함.
+            onChange={handleUpdateTodoList}
             defaultValue={todo}
             required
           />
@@ -135,7 +147,7 @@ const UpdateDeleteTodo = ({ todoList }) => {
           <FinishingButton
             onClick={() => {
               changeModified();
-              UpdateTodoLists();
+              updateTodoLists();
             }}
           >
             완료
@@ -144,7 +156,7 @@ const UpdateDeleteTodo = ({ todoList }) => {
         <DeleteButton
           onClick={(e) => {
             e.preventDefault();
-            DeleteTodoLists();
+            deleteTodoLists();
           }}
         >
           삭제
@@ -163,15 +175,18 @@ const UpdateTodoListWrapper = styled.form`
   width: 30rem;
 `;
 
-const CheckboxWrapper = styled.div`
+// const CheckBox = styled(MdOutlineCheckBox)``;
+
+// const CheckBoxBlank = styled(MdOutlineCheckBoxOutlineBlank)`
+//   svg {
+//   }
+// `;
+
+const CheckBox = styled.input`
+  margin: 0;
+  width: 1rem;
+  height: 1rem;
   cursor: pointer;
-`;
-
-const CheckBox = styled(MdOutlineCheckBox)``;
-
-const CheckBoxBlank = styled(MdOutlineCheckBoxOutlineBlank)`
-  svg {
-  }
 `;
 
 const ContentWrapper = styled.div`
@@ -180,7 +195,6 @@ const ContentWrapper = styled.div`
 `;
 
 const ReadContent = styled.div`
-  /* width: 23.8rem; */
   width: 22rem;
   font-size: 0.97rem;
   text-align: start;
@@ -191,7 +205,7 @@ const ReadContent = styled.div`
 const UpdateContent = styled.textarea.attrs((props) => ({
   name: "updateContent",
 }))`
-  width: 23.8rem;
+  width: 22rem;
   border: none;
   font-size: 0.82rem;
 `;

@@ -3,12 +3,16 @@ import styled from "styled-components";
 import axios from "axios";
 
 const CreateTodo = () => {
+  const headers = {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  };
+
   const [todoLists, setTodoLists] = useState({
     todo: "",
   });
 
   // async () 여기에 파라미터 넣으면 안됨.
-  const PostTodoLists = async () => {
+  const postTodoLists = async () => {
     await axios
       .post(
         "https://pre-onboarding-selection-task.shop/todos",
@@ -16,9 +20,7 @@ const CreateTodo = () => {
           todo: todoLists.todo,
         },
         {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+          headers: headers,
         }
       )
       .then((res) => {
@@ -32,7 +34,7 @@ const CreateTodo = () => {
 
   // const c = (e) => {
   //   e.preventDefault();
-  //   PostTodoLists();
+  //   postTodoLists();
   //   // e.currentTarget.reset();
   // };
 
@@ -55,7 +57,7 @@ const CreateTodo = () => {
             // form 태그로 감싼 input과 button으로 엔터키를 누르거나 버튼을 누르면
             // 사용자가 입력한 값은 자동으로 submit되며 브라우저는 새로고침된다. -> 이 새로고침을 막아주는게 e.preventDefault()
             e.preventDefault();
-            PostTodoLists();
+            postTodoLists();
           }}
         >
           게시

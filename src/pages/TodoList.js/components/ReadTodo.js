@@ -4,14 +4,16 @@ import axios from "axios";
 import UpdateDeleteTodo from "./UpdateDeleteTodo";
 
 const ReadTodo = () => {
+  const headers = {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  };
+
   const [todoLists, setTodoLists] = useState([]);
 
-  const GetTodoLists = async () => {
+  const getTodoLists = async () => {
     await axios
       .get("https://pre-onboarding-selection-task.shop/todos", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+        headers: headers,
       })
       .then((res) => {
         setTodoLists(res.data);
@@ -19,13 +21,19 @@ const ReadTodo = () => {
       });
   };
   useEffect(() => {
-    GetTodoLists();
+    getTodoLists();
   }, []);
 
   return (
     <ReadTodoWrapper>
       {todoLists.map((todoList) => (
-        <UpdateDeleteTodo todoList={todoList} key={todoList.id} />
+        <UpdateDeleteTodo
+          id={todoList.id}
+          todo={todoList.todo}
+          isCompleted={todoList.isCompleted}
+          userId={todoList.userId}
+          key={todoList.id}
+        />
       ))}
     </ReadTodoWrapper>
   );
