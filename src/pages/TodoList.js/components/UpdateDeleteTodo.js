@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import axios from "axios";
-// import {
-//   MdOutlineCheckBox,
-//   MdOutlineCheckBoxOutlineBlank,
-// } from "react-icons/md";
-
-// import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdDone } from "react-icons/md";
 
 const UpdateDeleteTodo = ({ id, todo, isCompleted, userId }) => {
   const headers = {
@@ -19,8 +14,6 @@ const UpdateDeleteTodo = ({ id, todo, isCompleted, userId }) => {
     updateIsCompleted: isCompleted,
     updateUserId: userId,
   });
-  // const { updateId, updateTodo, updateIsCompleted, updateUserId } =
-  //   updateTodoLists;
 
   const handleUpdateTodoList = (e) => {
     setUpdateTodolist({
@@ -117,15 +110,22 @@ const UpdateDeleteTodo = ({ id, todo, isCompleted, userId }) => {
 
   return (
     <UpdateTodoListWrapper>
-      {/* {isChecked ? <CheckBox /> : <CheckBoxBlank />} */}
-      <CheckBox
+      <CheckCircle
+        isCompleted={isCompleted}
+        onClick={() => {
+          changeChecked();
+        }}
+      >
+        {isCompleted && <MdDone />}
+      </CheckCircle>
+      {/* <CheckBox
         type="checkbox"
-        id={id} // ?
+        id={id} 
         onClick={() => {
           changeChecked();
         }}
         checked={isCompleted} // ?
-      />
+      /> */}
       <ContentWrapper>
         {!isModified ? (
           <ReadContent>{todo}</ReadContent>
@@ -159,7 +159,6 @@ const UpdateDeleteTodo = ({ id, todo, isCompleted, userId }) => {
           }}
         >
           삭제
-          {/* <RiDeleteBin6Line /> */}
         </DeleteButton>
       </BtnsWrapper>
     </UpdateTodoListWrapper>
@@ -174,27 +173,40 @@ const UpdateTodoListWrapper = styled.form`
   width: 30rem;
 `;
 
-// const CheckBox = styled(MdOutlineCheckBox)``;
-
-// const CheckBoxBlank = styled(MdOutlineCheckBoxOutlineBlank)`
-//   svg {
-//   }
-// `;
-
-const CheckBox = styled.input`
-  margin: 0;
-  width: 1rem;
-  height: 1rem;
+const CheckCircle = styled.div`
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 0.3rem;
+  background-color: #ced4da;
+  /* border: 0.13rem solid #ced4da; */
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  ${(props) =>
+    props.isCompleted &&
+    css`
+      /* border: 0.13rem solid #38d9a9; */
+      background-color: ${(props) => props.theme.colors.mint};
+      color: ${(props) => props.theme.colors.white};
+    `}
 `;
 
+// const CheckBox = styled.input`
+//   margin: 0;
+//   width: 1rem;
+//   height: 1rem;
+//   cursor: pointer;
+// `;
+
 const ContentWrapper = styled.div`
-  background-color: #f8f9fa;
+  background-color: ${(props) => props.theme.colors.lightGray};
   margin: 0 0.9rem 1.5rem 0.9rem;
 `;
 
 const ReadContent = styled.div`
-  width: 22rem;
+  width: 21.5rem;
   font-size: 0.97rem;
   text-align: start;
   white-space: pre-wrap;
