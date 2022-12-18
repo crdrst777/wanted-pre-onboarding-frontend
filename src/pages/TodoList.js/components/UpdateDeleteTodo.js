@@ -216,7 +216,7 @@ const ReadContent = styled.div`
 const UpdateContent = styled.textarea.attrs((props) => ({
   name: "updateContent",
 }))`
-  width: 22rem;
+  width: 21.5rem;
   border: none;
   font-size: 0.82rem;
 `;
