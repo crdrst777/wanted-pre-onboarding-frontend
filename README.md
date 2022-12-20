@@ -7,7 +7,6 @@
 ## 데모 영상
 <img src="https://user-images.githubusercontent.com/101506779/208680692-e04433ba-a58c-49e5-af0b-beb1458268f8.gif">
 
-
 ## 실행 방법
 ```
 $ git clone git@github.com:crdrst777/wanted-pre-onboarding-frontend.git  
@@ -35,3 +34,11 @@ $ npm start
       ├─ GlobalStyles.js
       └─ Theme.js
 ```
+
+## 커밋 컨벤션
+* feat: 새로운 기능 추가
+* fix: 버그 수정
+* docs: 문서 수정
+* style: 디자인 수정, 세미콜론 빠졌을때 
+* refactor: 리팩토링
+* chore: 빌드관련 수정, 패키지 매니저 수정
