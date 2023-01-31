@@ -31,9 +31,9 @@ const Nav = () => {
       )}
 
       {localStorage.getItem("token") ? (
-        <LogoutBtn onClick={() => signOut()}>로그아웃</LogoutBtn>
+        <SignOutBtn onClick={() => signOut()}>로그아웃</SignOutBtn>
       ) : (
-        <LoginBtn onClick={() => navigate("/signin")}>로그인</LoginBtn>
+        <SignInBtn onClick={() => navigate("/signin")}>로그인</SignInBtn>
       )}
     </NavWrapper>
   );
@@ -61,5 +61,5 @@ const TodoListBtn = styled.button`
   cursor: pointer;
 `;
 
-const LogoutBtn = styled(TodoListBtn)``;
-const LoginBtn = styled(TodoListBtn)``;
+const SignOutBtn = styled(TodoListBtn)``;
+const SignInBtn = styled(TodoListBtn)``;

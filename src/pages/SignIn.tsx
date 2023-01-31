@@ -35,9 +35,6 @@ const SignIn = () => {
         localStorage.setItem("token", res.data.access_token);
         alert("성공적으로 로그인 했습니다");
         console.log(res);
-
-        // window.location.reload();
-        // 이거 하면 안됨
       })
       .catch((err) => {
         alert("ID 또는 비밀번호가 틀립니다.");
@@ -58,12 +55,18 @@ const SignIn = () => {
       <SignInPageInfo>로그인</SignInPageInfo>
       <SignInForm onSubmit={goToSignIn}>
         <Label>이메일</Label>
-        <EmailInput onChange={handleInput} required />
+        <EmailInput onChange={handleInput} data-testid="email-input" required />
 
         <Label>비밀번호</Label>
-        <PasswordInput onChange={handleInput} required />
+        <PasswordInput
+          onChange={handleInput}
+          data-testid="password-input"
+          required
+        />
 
-        <SignInBtn disabled={!isInputValid}>로그인</SignInBtn>
+        <SignInBtn data-testid="signin-button" disabled={!isInputValid}>
+          로그인
+        </SignInBtn>
       </SignInForm>
       <SignUpBtn onClick={goToSignUp}>회원가입</SignUpBtn>
     </SignInWrapper>

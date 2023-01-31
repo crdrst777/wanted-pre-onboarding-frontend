@@ -7,6 +7,11 @@ import SignUpType from "../compiler/types";
 const SignUp = () => {
   const navigate = useNavigate();
 
+  const haveToken = localStorage.getItem("token");
+  if (haveToken) {
+    navigate("/todo");
+  }
+
   const [userInputs, setUserInputs] = useState({
     email: "",
     password: "",
@@ -74,22 +79,30 @@ const SignUp = () => {
       <SignUpPageInfo>회원가입</SignUpPageInfo>
       <SignUpForm onSubmit={goToSignUp}>
         <Label>이메일</Label>
-        <EmailInput onChange={handleInput} required />
+        <EmailInput onChange={handleInput} data-testid="email-input" required />
         {!email.includes("@") ? (
           <Text>이메일에는 '@' 가 포함되어야 합니다.</Text>
         ) : null}
+
         <Label>비밀번호</Label>
-        <PasswordInput onChange={handleInput} required />
+        <PasswordInput
+          onChange={handleInput}
+          data-testid="password-input"
+          required
+        />
         {password.length < 8 ? (
           <Text>비밀번호는 8자리 이상이어야 합니다.</Text>
         ) : null}
+
         <Label>비밀번호 확인</Label>
         <PasswordCheckInput onChange={handleInput} required />
         {password !== checkPassword ? (
           <Text>비밀번호가 일치하지 않습니다.</Text>
         ) : null}
 
-        <SignUpBtn disabled={!isInputValid}>회원가입 완료</SignUpBtn>
+        <SignUpBtn data-testid="signup-button" disabled={!isInputValid}>
+          회원가입 완료
+        </SignUpBtn>
       </SignUpForm>
     </SignUpWrapper>
   );
