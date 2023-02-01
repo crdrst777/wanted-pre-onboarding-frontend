@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import axios from "axios";
 import { MdDone } from "react-icons/md";
 import TodoListType from "../../../compiler/types";
+import DeleteTodo from "../components/DeleteTodo";
 
 const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
   const headers = {
@@ -84,6 +85,8 @@ const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
             완료
           </FinishingBtn>
         )}
+
+        <DeleteTodo />
       </BtnsWrapper>
     </UpdateTodoWrapper>
   );
@@ -92,11 +95,10 @@ const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
 export default UpdateTodo;
 
 const UpdateTodoWrapper = styled.form`
-  ${(props) => props.theme.flex.flexBox("", "flex-start", "start")}
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center; */
+  display: flex;
+  /* flex-direction: row; */
+  /* align-items: flex-start; */
+  justify-content: start;
   width: 30rem;
   font-size: 1rem;
 `;
