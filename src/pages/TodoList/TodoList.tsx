@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import CreateTodo from "./components/CreateTodo";
+import ReadTodo from "./components/ReadTodo";
 
 const TodoList = () => {
   return (
     <TodoListWrapper>
       <CreateTodo />
+      <ReadTodo />
     </TodoListWrapper>
   );
 };

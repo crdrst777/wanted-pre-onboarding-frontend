@@ -7,21 +7,21 @@ const CreateTodo = () => {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   };
 
-  const [todoLists, setTodoLists] = useState({
+  const [todolist, setTodolist] = useState({
     todo: "",
   });
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTodoLists({ todo: e.target.value });
-    console.log(todoLists);
+    setTodolist({ todo: e.target.value });
+    console.log(todolist);
   };
 
-  const postTodoLists = async () => {
+  const postTodoList = async () => {
     await axios
       .post(
         "https://pre-onboarding-selection-task.shop/todos",
         {
-          todo: todoLists.todo,
+          todo: todolist.todo,
         },
         {
           headers: headers,
@@ -30,6 +30,7 @@ const CreateTodo = () => {
       .then((res) => {
         alert("게시글이 등록되었습니다.");
         window.location.reload(); // 새로고침.
+        console.log(res);
       })
       .catch((err) => {
         alert(`${err}가 발생했습니다.`);
@@ -38,7 +39,7 @@ const CreateTodo = () => {
 
   const createTodoList = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postTodoLists();
+    postTodoList();
   };
 
   return (
@@ -55,11 +56,11 @@ const CreateTodo = () => {
 export default CreateTodo;
 
 const CreateTodoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* text-align: center; */
   padding: 0.4rem 0 0 0;
   margin-bottom: 1.6rem;
 `;
@@ -73,8 +74,8 @@ const TodoListForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  /* justify-content: center; */
+  /* text-align: center; */
   margin-top: 2.7rem;
 `;
 
