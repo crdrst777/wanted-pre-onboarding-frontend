@@ -29,7 +29,7 @@ const CreateTodo = () => {
       )
       .then((res) => {
         alert("게시글이 등록되었습니다.");
-        window.location.reload(); // 새로고침
+        window.location.reload(); // 새로고침.
       })
       .catch((err) => {
         alert(`${err}가 발생했습니다.`);
