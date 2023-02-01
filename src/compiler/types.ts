@@ -11,6 +11,7 @@ export default interface SignInType {
 
 export default interface TodoListType {
   id: number;
-  title: string;
-  completed: boolean;
+  todo: string;
+  isCompleted: boolean;
+  userId: number;
 }

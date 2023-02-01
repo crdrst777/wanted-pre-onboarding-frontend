@@ -49,24 +49,6 @@ const SignUp = () => {
       });
   };
 
-  // const handleSignUp = async () => {
-  //   try {
-  //     const res = await axios.post(
-  //       "https://pre-onboarding-selection-task.shop/auth/signup",
-  //       {
-  //         email: email,
-  //         password: password,
-  //       }
-  //     );
-  //     if (res.status === 201) {
-  //       console.log(res);
-  //       alert("계정이 성공적으로 생성되었습니다");
-  //     }
-  //   } catch (err) {
-  //     alert(`${err}가 발생했습니다.`);
-  //   }
-  // };
-
   const goToSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(userInputs);

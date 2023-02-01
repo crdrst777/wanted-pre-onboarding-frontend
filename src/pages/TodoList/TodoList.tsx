@@ -1,7 +1,20 @@
-// import styled from "styled-components";
+import styled from "styled-components";
+import CreateTodo from "./components/CreateTodo";
 
 const TodoList = () => {
-  return <div></div>;
+  return (
+    <TodoListWrapper>
+      <CreateTodo />
+    </TodoListWrapper>
+  );
 };
 
 export default TodoList;
+
+const TodoListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`;
