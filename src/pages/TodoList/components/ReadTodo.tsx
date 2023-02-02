@@ -18,7 +18,6 @@ const ReadTodo = () => {
       })
       .then((res) => {
         setTodoLists(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         alert(`${err}가 발생했습니다.`);

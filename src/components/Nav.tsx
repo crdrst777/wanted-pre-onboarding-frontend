@@ -9,6 +9,7 @@ const Nav = () => {
     if (isSignIn) {
       localStorage.removeItem("token");
       alert("로그아웃 되었습니다.");
+      window.location.reload();
       navigate("/signin");
     }
   };
@@ -57,8 +58,7 @@ const TodoListBtn = styled.button`
   font-size: 1rem;
   background-color: ${(props) => props.theme.colors.white};
   color: ${(props) => props.theme.colors.mint};
-  font-weight: ${(props) => props.theme.fontWeights.semiBold};
-  cursor: pointer;
+  font-weight: 600;
 `;
 
 const SignOutBtn = styled(TodoListBtn)``;

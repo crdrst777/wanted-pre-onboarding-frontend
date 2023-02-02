@@ -16,7 +16,6 @@ const SignIn = () => {
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(userInputs);
     setUserInputs({
       ...userInputs,
       [name]: value,
@@ -34,7 +33,7 @@ const SignIn = () => {
       .then((res) => {
         localStorage.setItem("token", res.data.access_token);
         alert("성공적으로 로그인 했습니다");
-        console.log(res);
+        window.location.reload();
       })
       .catch((err) => {
         alert("ID 또는 비밀번호가 틀립니다.");

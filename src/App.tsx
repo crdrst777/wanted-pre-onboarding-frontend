@@ -6,7 +6,6 @@ import TodoList from "./pages/TodoList/TodoList";
 
 function App() {
   const haveToken = localStorage.getItem("token");
-  console.log(haveToken);
 
   return (
     <BrowserRouter>
@@ -27,11 +26,6 @@ function App() {
           path="/todo"
           element={haveToken ? <TodoList /> : <Navigate to="/signin" />}
         />
-        replace는 뒤로가기와 관련된것임. replace={true} / replace={false}
-        https://reach.tech/router/api/navigate
-        {/* <Route path="/signin" element={<SignIn />} /> */}
-        {/* <Route path="/signup" element={<SignUp />} /> */}
-        {/* <Route path="/todo" element={<TodoList />} /> */}
       </Routes>
     </BrowserRouter>
   );

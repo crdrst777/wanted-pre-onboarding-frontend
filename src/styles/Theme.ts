@@ -10,14 +10,14 @@ const fontSizes = {
   titleSize: calcRem(32),
 };
 
-const fontWeights = {
-  thin: "200",
-  light: "300",
-  regular: "400",
-  bold: "500",
-  semiBold: "600",
-  extraBold: "700",
-};
+// const fontWeights = {
+//   thin: "200",
+//   light: "300",
+//   regular: "400",
+//   bold: "500",
+//   semiBold: "600",
+//   extraBold: "700",
+// };
 
 const paddings = {
   small: calcRem(4),
@@ -57,23 +57,21 @@ const borders = {
   lightGray: "1px solid #ebebeb",
 };
 
-const flex = {
-  flexBox: (direction = "row", align = "center", justify = "center") => `
-    display: flex;
-    flex-direction: ${direction};
-    align-items: ${align};
-    justify-content: ${justify};
-  `,
-};
+// const flex = {
+//   flexBox: (direction = "row", align = "center", justify = "center") => `
+//     display: flex;
+//     flex-direction: ${direction};
+//     align-items: ${align};
+//     justify-content: ${justify};
+//   `,
+// };
 
 const theme = {
   fontSizes,
-  fontWeights,
   paddings,
   margins,
   colors,
   borders,
-  flex,
 };
 
 export default theme;

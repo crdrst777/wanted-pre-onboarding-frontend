@@ -1,7 +1,31 @@
+import axios from "axios";
 import styled from "styled-components";
 
-const DeleteTodo = () => {
-  const deleteTodoList = () => {};
+interface DeleteTodoProps {
+  id: number;
+}
+
+const DeleteTodo = ({ id }: DeleteTodoProps) => {
+  const headers = {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  };
+
+  const deleteTodoList = async () => {
+    const result = window.confirm("이 게시물을 삭제하시겠습니까?");
+    if (result) {
+      await axios
+        .delete(`https://pre-onboarding-selection-task.shop/todos/${id}`, {
+          headers: headers,
+        })
+        .then((res) => {
+          alert("삭제되었습니다.");
+          window.location.reload();
+        })
+        .catch((err) => {
+          alert(`${err}가 발생했습니다.`);
+        });
+    }
+  };
 
   // const 함수 = (e: React.MouseEvent<HTMLButtonElement>) => {
   //   e.preventDefault();
@@ -30,5 +54,5 @@ const DeleteBtn = styled.button`
   background-color: ${(props) => props.theme.colors.mint};
   color: ${(props) => props.theme.colors.white};
   border-radius: 0.3rem;
-  margin-left: 0.2rem;
+  margin-left: 0.27rem;
 `;

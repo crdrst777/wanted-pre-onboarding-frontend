@@ -22,9 +22,6 @@ const SignUp = () => {
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    // console.log(e.target.name);
-    // console.log(e.target.value);
-    // console.log(userInputs);
     setUserInputs({
       ...userInputs,
       [name]: value,
@@ -97,11 +94,6 @@ const SignUpWrapper = styled.section`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  /* justify-content: center; */
-  /* text-align: center; */
-  /* margin-top: 6rem; */
-  /* width: 30rem; */
-  /* border-radius: 0.7rem; */
 `;
 
 const SignUpPageInfo = styled.div`
@@ -156,18 +148,6 @@ const PasswordCheckInput = styled(PasswordInput).attrs({
   name: "checkPassword",
   placeholder: "비밀번호 확인",
 })``;
-
-// const EmailInput = styled.input`
-//   width: 20rem;
-//   height: 3rem;
-//   margin: 0.5rem;
-//   padding: 0.7rem;
-//   font-size: 1rem;
-// `;
-
-// const PasswordInput = styled(EmailInput)``;
-
-// const PasswordCheckInput = styled(PasswordInput)``;
 
 const SignUpBtn = styled.button`
   margin: 2rem 0;

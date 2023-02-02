@@ -13,7 +13,6 @@ const CreateTodo = () => {
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodolist({ todo: e.target.value });
-    console.log(todolist);
   };
 
   const postTodoList = async () => {
@@ -29,7 +28,7 @@ const CreateTodo = () => {
       )
       .then((res) => {
         alert("게시글이 등록되었습니다.");
-        window.location.reload(); // 새로고침.
+        window.location.reload();
         console.log(res);
       })
       .catch((err) => {
@@ -56,11 +55,6 @@ const CreateTodo = () => {
 export default CreateTodo;
 
 const CreateTodoWrapper = styled.div`
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* text-align: center; */
   padding: 0.4rem 0 0 0;
   margin-bottom: 1.6rem;
 `;
@@ -74,8 +68,6 @@ const TodoListForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
-  /* text-align: center; */
   margin-top: 2.7rem;
 `;
 
