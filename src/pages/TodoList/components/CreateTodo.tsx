@@ -46,7 +46,7 @@ const CreateTodo = () => {
       <InputInfo>TodoList</InputInfo>
       <TodoListForm onSubmit={createTodoList}>
         <TextInput onChange={handleInput} required />
-        <PostBtn>게시</PostBtn>
+        <PostBtn>추가</PostBtn>
       </TodoListForm>
     </CreateTodoWrapper>
   );

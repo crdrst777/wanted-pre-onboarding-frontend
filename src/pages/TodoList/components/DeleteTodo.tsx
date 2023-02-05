@@ -27,18 +27,12 @@ const DeleteTodo = ({ id }: DeleteTodoProps) => {
     }
   };
 
-  // const 함수 = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   deleteTodoList();
-  // };
-
   return (
     <DeleteBtn
       onClick={(e) => {
         e.preventDefault();
         deleteTodoList();
       }}
-      // onClick={함수}
     >
       삭제
     </DeleteBtn>

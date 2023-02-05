@@ -1,13 +1,13 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
 import axios from "axios";
-import { MdDone } from "react-icons/md";
+// import { MdDone } from "react-icons/md";
 import TodoListType from "../../../compiler/types";
 import DeleteTodo from "../components/DeleteTodo";
 
-interface styledProps {
-  isCompleted: boolean;
-}
+// interface styledProps {
+//   isCompleted: boolean;
+// }
 
 const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
   const headers = {
@@ -74,9 +74,18 @@ const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
 
   return (
     <UpdateTodoWrapper>
-      <CheckCircle isCompleted={isCompleted} onClick={changeChecked}>
+      {/* <CheckBox isCompleted={isCompleted} onClick={changeChecked}>
         {isCompleted && <MdDone />}
-      </CheckCircle>
+      </CheckBox> */}
+
+      <CheckBox
+        type="checkbox"
+        // id={id} // label과의 연결
+        onClick={() => {
+          changeChecked();
+        }}
+        defaultChecked={isCompleted}
+      />
 
       <ContentWrapper>
         {!isModified ? (
@@ -92,21 +101,30 @@ const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
       </ContentWrapper>
 
       <BtnsWrapper>
-        {/* isModified가 true면? */}
         {!isModified ? (
-          <ModifyingBtn onClick={changeModified}>수정</ModifyingBtn>
+          <>
+            <ModifyBtn onClick={changeModified}>수정</ModifyBtn>
+            <DeleteTodo id={id} />
+          </>
         ) : (
-          <FinishingBtn
-            onClick={() => {
-              updateTodoLists();
-              changeModified();
-            }}
-          >
-            제출
-          </FinishingBtn>
+          <>
+            <SubmitBtn
+              onClick={() => {
+                updateTodoLists();
+                changeModified();
+              }}
+            >
+              제출
+            </SubmitBtn>
+            <CancelBtn
+              onClick={() => {
+                window.location.reload();
+              }}
+            >
+              취소
+            </CancelBtn>
+          </>
         )}
-
-        <DeleteTodo id={id} />
       </BtnsWrapper>
     </UpdateTodoWrapper>
   );
@@ -114,30 +132,37 @@ const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
 
 export default UpdateTodo;
 
-const UpdateTodoWrapper = styled.form`
+const UpdateTodoWrapper = styled.li`
   display: flex;
   justify-content: space-between;
   width: 30rem;
   font-size: 1rem;
 `;
 
-const CheckCircle = styled.div`
-  width: 1.2rem;
-  height: 1.2rem;
-  border-radius: 0.3rem;
-  background-color: #ced4da;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+// const CheckBox = styled.div`
+//   width: 1.2rem;
+//   height: 1.2rem;
+//   border-radius: 0.3rem;
+//   background-color: #ced4da;
+//   font-size: 1rem;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   cursor: pointer;
+//   ${(props: styledProps) =>
+//     props.isCompleted &&
+//     css`
+//       // isCompleted가 되면 아래와같은 변화가 생긴다.
+//       background-color: ${(props) => props.theme.colors.mint};
+//       color: ${(props) => props.theme.colors.white};
+//     `}
+// `;
+
+const CheckBox = styled.input`
+  margin: 0;
+  width: 1rem;
+  height: 1rem;
   cursor: pointer;
-  ${(props: styledProps) =>
-    props.isCompleted &&
-    css`
-      // isCompleted가 되면 아래와같은 변화가 생긴다.
-      background-color: ${(props) => props.theme.colors.mint};
-      color: ${(props) => props.theme.colors.white};
-    `}
 `;
 
 const ContentWrapper = styled.div`
@@ -163,7 +188,7 @@ const UpdateContent = styled.textarea`
 
 const BtnsWrapper = styled.div``;
 
-const ModifyingBtn = styled.button`
+const ModifyBtn = styled.button`
   width: 2.5rem;
   height: 1.5rem;
   font-size: 0.8rem;
@@ -172,4 +197,7 @@ const ModifyingBtn = styled.button`
   border-radius: 0.3rem;
 `;
 
-const FinishingBtn = styled(ModifyingBtn)``;
+const SubmitBtn = styled(ModifyBtn)``;
+const CancelBtn = styled(ModifyBtn)`
+  margin-left: 0.27rem;
+`;
