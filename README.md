@@ -5,7 +5,7 @@
 [선발과제(api)](https://github.com/walking-sunset/selection-task)
 
 ## 배포 링크
-[배포 ](https://github.com/walking-sunset/selection-task)
+[배포 링크](https://crdrst777.github.io/wanted-pre-onboarding-frontend)
 
 ## 실행 방법
 ```
