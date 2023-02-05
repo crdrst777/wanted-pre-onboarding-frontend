@@ -4,8 +4,8 @@
 [원티드 프리온보딩 프론트엔드 인턴십](https://www.wanted.co.kr/events/pre_ob_fe_9)  
 [선발과제(api)](https://github.com/walking-sunset/selection-task)
 
-## 배포 링크
-[배포 링크](https://crdrst777.github.io/wanted-pre-onboarding-frontend/)
+## 데모 영상
+<img src="https://user-images.githubusercontent.com/101506779/216820930-fd1574c6-9966-4fcf-96a0-2a18eb3bb9ee.gif">
 
 ## 실행 방법
 ```
