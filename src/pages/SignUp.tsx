@@ -39,7 +39,6 @@ const SignUp = () => {
       })
       .then((res) => {
         alert("계정이 성공적으로 생성되었습니다");
-        console.log(res);
       })
       .catch((err) => {
         alert(`${err}가 발생했습니다.`);
@@ -48,7 +47,6 @@ const SignUp = () => {
 
   const goToSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(userInputs);
     handleSignUp();
     navigate("/signin");
   };

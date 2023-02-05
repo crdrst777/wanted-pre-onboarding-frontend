@@ -33,6 +33,7 @@ const DeleteTodo = ({ id }: DeleteTodoProps) => {
         e.preventDefault();
         deleteTodoList();
       }}
+      data-testid="delete-button"
     >
       삭제
     </DeleteBtn>

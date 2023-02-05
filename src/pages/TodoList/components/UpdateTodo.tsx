@@ -95,6 +95,7 @@ const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
             onChange={handleUpdateTodoList}
             defaultValue={todo}
             name="updateContent"
+            data-testid="modify-input"
             required
           />
         )}
@@ -103,7 +104,9 @@ const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
       <BtnsWrapper>
         {!isModified ? (
           <>
-            <ModifyBtn onClick={changeModified}>수정</ModifyBtn>
+            <ModifyBtn onClick={changeModified} data-testid="modify-button">
+              수정
+            </ModifyBtn>
             <DeleteTodo id={id} />
           </>
         ) : (
@@ -113,6 +116,7 @@ const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
                 updateTodoLists();
                 changeModified();
               }}
+              data-testid="submit-button"
             >
               제출
             </SubmitBtn>
@@ -120,6 +124,7 @@ const UpdateTodo = ({ id, todo, isCompleted, userId }: TodoListType) => {
               onClick={() => {
                 window.location.reload();
               }}
+              data-testid="cancel-button"
             >
               취소
             </CancelBtn>

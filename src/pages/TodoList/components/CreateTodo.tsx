@@ -27,9 +27,8 @@ const CreateTodo = () => {
         }
       )
       .then((res) => {
-        alert("게시글이 등록되었습니다.");
+        // alert("게시글이 등록되었습니다.");
         window.location.reload();
-        console.log(res);
       })
       .catch((err) => {
         alert(`${err}가 발생했습니다.`);
@@ -45,8 +44,12 @@ const CreateTodo = () => {
     <CreateTodoWrapper>
       <InputInfo>TodoList</InputInfo>
       <TodoListForm onSubmit={createTodoList}>
-        <TextInput onChange={handleInput} required />
-        <PostBtn>추가</PostBtn>
+        <TextInput
+          onChange={handleInput}
+          data-testid="new-todo-input"
+          required
+        />
+        <PostBtn data-testid="new-todo-add-button">추가</PostBtn>
       </TodoListForm>
     </CreateTodoWrapper>
   );
